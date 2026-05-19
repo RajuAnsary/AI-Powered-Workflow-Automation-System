@@ -7,27 +7,12 @@ const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
 
-// CORS — must be registered before all routes
-const allowedOrigins = [
-  'http://localhost:5173',
-  process.env.FRONTEND_URL,
-];
-
+// CORS
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
+  origin: process.env.FRONTEND_URL,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
-// Handle OPTIONS preflight for all routes
-app.options('*', cors());
-
-console.log('Allowed origins:', allowedOrigins);
 
 // JSON body parser
 app.use(express.json());
