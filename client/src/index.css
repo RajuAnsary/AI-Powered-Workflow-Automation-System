@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #f0f2f5;
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tailwind v4 custom theme tokens */
+@theme {
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+}

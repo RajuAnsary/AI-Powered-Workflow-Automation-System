@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Uploaded files — keep the folder, ignore its contents
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Tesseract trained data (large binary — keep it)
+!server/eng.traineddata
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Kiro internal
+.kiro/
