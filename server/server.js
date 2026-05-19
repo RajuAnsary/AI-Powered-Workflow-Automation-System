@@ -7,23 +7,27 @@ const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
 
-// CORS
+// CORS — must be registered before all routes
 const allowedOrigins = [
   'http://localhost:5173',
   process.env.FRONTEND_URL,
-].filter(Boolean); // remove undefined if FRONTEND_URL is not set
+];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (e.g. curl, Postman, server-to-server)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS: origin ${origin} not allowed`));
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
+
+// Handle OPTIONS preflight for all routes
+app.options('*', cors());
+
+console.log('Allowed origins:', allowedOrigins);
 
 // JSON body parser
 app.use(express.json());
