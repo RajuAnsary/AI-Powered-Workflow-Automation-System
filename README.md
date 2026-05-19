@@ -163,3 +163,7 @@ npm test
 | `PUT` | `/api/records/:id` | Confirm and save a reviewed record |
 | `GET` | `/api/dashboard` | Aggregated analytics |
 | `GET` | `/health` | Health check |
+
+
+## Author
+Raju Ansary
